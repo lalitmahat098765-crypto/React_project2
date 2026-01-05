@@ -1,29 +1,28 @@
-// import InputEmail from "./components/InputEmail";
-// import Password from "./components/Password";
-// import SubmitButton from "./components/SubmitButton";
+import AddEmailPassword from "./components/AddEmailPassword";
 import styles from "./App.module.css";
 import { useState } from "react";
-import IncreaseDecrease from "./components/IncreaseDecrease";
+import { UserDataContext } from "./store/EmailPasswordContext";
+import UserProfiles from "./components/UserProfiles";
 function App() {
-  // const [formData, setFormData] = useState({
-  //   email: "",
-  //   password: "",
-  // });
+  const [formData, setFormData] = useState([]);
 
-  // const OnClickSubmitButton = (event) => {
-  //   event.preventDefault();
-  //   console.log(event);
-  // };
+  const addNewUser = (newEmail, newPassword) => {
+    setFormData((previous) => [
+      ...previous,
+      {
+        email: newEmail,
+        password: newPassword,
+      },
+    ]);
+  };
 
   return (
-    <div className={styles.container}>
-      {/* <form onSubmit={OnClickSubmitButton}>
-        <InputEmail handleChange={HandleChange} />
-        <Password handleChange={HandleChange} />
-        <SubmitButton />
-      </form> */}
-      <IncreaseDecrease />
-    </div>
+    <UserDataContext.Provider value={{ formData, addNewUser }}>
+      <div className={styles.container}>
+        <AddEmailPassword />
+      </div>
+      <UserProfiles />
+    </UserDataContext.Provider>
   );
 }
 

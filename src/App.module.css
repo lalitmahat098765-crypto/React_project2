@@ -1,5 +1,5 @@
 .container {
-  margin: 100px auto;
+  margin: 30px auto;
   border: 2px solid rgb(110, 107, 107);
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
